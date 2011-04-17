@@ -15,6 +15,8 @@ class Projeto {
 	Integer diasProposta
 	Integer diasConclusao // em dias
 	StatusProjeto status
+	
+	static hasMany = [especialidades:Especialidade]
 
 
 	static constraints = {

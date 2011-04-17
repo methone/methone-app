@@ -17,10 +17,16 @@ class Parceiro {
 	String cidade
 	Interesse interesse
 
+	static hasMany = [projetos:Projeto, propostas:Proposta, pagamentos:Pagamento,
+		atividadesProjeto:AtividadeProjeto
+	]
+
+	static hasOne = [ranking:Ranking]
+
 	static constraints = {
-		login(blank:false)
-		email(blank:false,unique:true)
-		senha(blank:false)
+		login(blank:false,unique:true)
+		email(blank:false,unique:true,email:true)
+		senha(blank:false,password:true)
 		nome(blank:false)
 		interesse(blank:false)
 	}
