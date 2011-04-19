@@ -15,9 +15,10 @@ class Projeto {
 	Integer diasProposta
 	Integer diasConclusao // em dias
 	StatusProjeto status
-	
-	static hasMany = [especialidades:Especialidade]
 
+	static hasMany = [especialidades:Especialidade]
+	static hasOne = [area:Area]
+	static belongsTo = [parceiro:Parceiro]
 
 	static constraints = {
 		nome(blank:false)

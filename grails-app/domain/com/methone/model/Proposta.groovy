@@ -12,6 +12,8 @@ class Proposta {
 	Integer diasConclusao
 	String descricao
 	StatusProposta status
+	
+	static belongsTo = [parceiro:Parceiro]
 
 	static constraints = {
 		valor(blank:false)

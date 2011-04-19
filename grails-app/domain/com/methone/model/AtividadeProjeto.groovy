@@ -12,6 +12,8 @@ class AtividadeProjeto {
 	String descricao
 	Integer diasConclusao
 	StatusAtividadeProjeto status
+	
+	static belongsTo = [parceiro:Parceiro]
 
 	static constraints = {
 		nome(blank:false)

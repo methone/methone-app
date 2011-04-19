@@ -14,6 +14,7 @@ class Pagamento {
 	TipoPagamento tipo
 	StatusPagamento status
 
+	static belongsTo = [parceiro:Parceiro]
 
 	static constraints = { 
 		valor(blank:false)     

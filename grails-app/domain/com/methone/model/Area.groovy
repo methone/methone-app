@@ -9,6 +9,8 @@ class Area {
 	String nome
 	String descricao
 
+	static hasMany = [especialidades:Especialidade, projetos:Projeto]
+	
 	static constraints = {
 		nome(blank:false)
 		descricao(blank:false)

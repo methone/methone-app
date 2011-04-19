@@ -9,6 +9,8 @@ class Especialidade {
 	
 	String nome
 	String descricao
+	
+	static belongsTo = [area:Area]
 
 	static constraints = {
 		nome(blank:false)
