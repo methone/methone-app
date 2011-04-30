@@ -1,8 +1,8 @@
-package com.methone.model
+package com.methone
 
 import grails.test.*
 
-class ParceiroTests extends GrailsUnitTestCase {
+class PropostaTests extends GrailsUnitTestCase {
     protected void setUp() {
         super.setUp()
     }
