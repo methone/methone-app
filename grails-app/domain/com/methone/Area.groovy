@@ -13,6 +13,6 @@ class Area {
 	
 	static constraints = {
 		nome(blank:false)
-		descricao(blank:false)
+		descricao(blank:false, widget:'textarea')
 	}
 }
