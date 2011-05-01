@@ -1,17 +1,21 @@
 package com.methone.enumeration
 
+
+
 import grails.test.*
 
 class InteresseTests extends GrailsUnitTestCase {
-    protected void setUp() {
-        super.setUp()
-    }
 
-    protected void tearDown() {
-        super.tearDown()
-    }
+	void testTamanhoEnum() {
+		def interesseList = Interesse.values()
+		assertNotNull (interesseList)
+		assertEquals(3, interesseList.length)
+	}
 
-    void testSomething() {
+	void testBundleKey(){
+		assertEquals "contratar" , Interesse.CONTRATAR.bundleKey;
+		assertEquals "serContratado" , Interesse.SER_CONTRATADO.bundleKey;
+		assertEquals "contratarSerContratado" , Interesse.AMBOS.bundleKey;
+	}
 
-    }
 }

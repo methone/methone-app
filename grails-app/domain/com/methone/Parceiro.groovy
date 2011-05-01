@@ -3,7 +3,7 @@ package com.methone
 import com.methone.enumeration.Interesse;
 
 /**
- *  Entidade que representa um usuario no sistema. 
+ *  Entidade que representa um usuario no sistema.
  */
 class Parceiro {
 	String login
@@ -16,19 +16,19 @@ class Parceiro {
 	String estado
 	String cidade
 	Interesse interesse
-	
+
 	static hasOne = [ranking:Ranking]
 
 	static hasMany = [projetos:Projeto, propostas:Proposta, pagamentos:Pagamento,
 		atividadesProjeto:AtividadeProjeto
 	]
-	
+
 	static constraints = {
-		login(blank:false,unique:true)
 		email(blank:false,unique:true,email:true)
+		login(blank:false,unique:true)
 		senha(blank:false,password:true)
 		nome(blank:false)
 		interesse(blank:false)
-		ranking(nullable:true)		
+		ranking(nullable:true)
 	}
 }
