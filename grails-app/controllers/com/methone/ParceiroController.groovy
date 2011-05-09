@@ -15,7 +15,6 @@ class ParceiroController {
 
     def create = {
         def parceiroInstance = new Parceiro()
-        parceiroInstance.properties = params
         return [parceiroInstance: parceiroInstance]
     }
 
@@ -58,7 +57,7 @@ class ParceiroController {
             if (params.version) {
                 def version = params.version.toLong()
                 if (parceiroInstance.version > version) {
-                    
+
                     parceiroInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'parceiro.label', default: 'Parceiro')] as Object[], "Another user has updated this Parceiro while you were editing")
                     render(view: "edit", model: [parceiroInstance: parceiroInstance])
                     return

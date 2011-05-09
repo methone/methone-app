@@ -1,11 +1,11 @@
 package com.methone
 
-import com.methone.enumeration.Interesse;
+import com.methone.enumeration.Interesse
 
 /**
  *  Entidade que representa um usuario no sistema.
  */
-class Parceiro {
+class Parceiro  {
 	String login
 	String email
 	String senha

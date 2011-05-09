@@ -70,7 +70,7 @@ class ParceiroTests extends GrailsUnitTestCase {
 	}
 
 	void testBlank(def property){
-		parceiro.properties[property] = null
+		parceiro."$property" = null
 		assertFalse parceiro.validate()
 		assertEquals  'nullable', parceiro.errors[property]
 
