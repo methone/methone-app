@@ -45,10 +45,8 @@ class ParceiroControllerTests extends ControllerUnitTestCase {
 		mockDomain(Parceiro)
 		controller.metaClass.message = {args -> println "${args}"}
 		controller.save()
-		assertNotNull redirectArgs
-		assertNotNull redirectArgs.action
-		assertEquals "show", redirectArgs.action
-		assertNotNull redirectArgs.id
+		assertEquals "create", renderArgs.view
+		assertNull renderArgs.model
 	}
 
 }

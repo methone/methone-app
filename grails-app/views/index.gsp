@@ -90,9 +90,15 @@
             <div id="controllerList" class="dialog">
                 <h2>Available Controllers:</h2>
                 <ul>
-                    <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-                        <li class="controller"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></li>
-                    </g:each>
+                   <li class="controller">
+                         <a href="/methone-app/area">com.methone.AreaController</a>
+                   </li>
+                   <li class="controller">
+                      <a href="/methone-app/especialidade">com.methone.EspecialidadeController</a>
+                   </li>
+                   <li class="controller">
+                       <a href="/methone-app/parceiro/create"><g:message code="cadastroParceiro"  /></a>
+                   </li>
                 </ul>
             </div>
         </div>
