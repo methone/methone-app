@@ -6,6 +6,9 @@
         <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
         <g:layoutHead />
         <g:javascript library="application" />
+        <g:javascript library="jquery" plugin="jquery"/>
+        <g:javascript src="jquery.maskedinput-1.3.min.js" />
+
     </head>
     <body>
         <div id="spinner" class="spinner" style="display:none;">

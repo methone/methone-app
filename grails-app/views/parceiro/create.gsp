@@ -34,7 +34,7 @@
                                     <label for="login"><g:message code="login" default="Login" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: parceiroInstance, field: 'login', 'errors')}">
-                                    <g:textField name="login" value="${parceiroInstance?.login}" />
+                                    <g:textField name="login" value="${parceiroInstance?.login}"  maxlength="250"/>
                                 </td>
                             </tr>
 
@@ -43,7 +43,7 @@
                                     <label for="email"><g:message code="email" default="Email" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: parceiroInstance, field: 'email', 'errors')}">
-                                    <g:textField name="email" value="${parceiroInstance?.email}" />
+                                    <g:textField name="email" value="${parceiroInstance?.email}" maxlength="250" />
                                 </td>
                             </tr>
 
@@ -52,7 +52,7 @@
                                     <label for="senha"><g:message code="senha" default="Senha" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: parceiroInstance, field: 'senha', 'errors')}">
-                                    <g:passwordField name="senha" value="${parceiroInstance?.senha}" />
+                                    <g:passwordField name="senha" value="${parceiroInstance?.senha}" maxlength="250" />
                                 </td>
                             </tr>
 
@@ -61,7 +61,7 @@
                                     <label for="nome"><g:message code="nome" default="Nome" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: parceiroInstance, field: 'nome', 'errors')}">
-                                    <g:textField name="nome" value="${parceiroInstance?.nome}" />
+                                    <g:textField name="nome" value="${parceiroInstance?.nome}" maxlength="250" />
                                 </td>
                             </tr>
 
@@ -91,7 +91,7 @@
                                     <label for="cidade"><g:message code="cidade" default="Cidade" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: parceiroInstance, field: 'cidade', 'errors')}">
-                                    <g:textField name="cidade" value="${parceiroInstance?.cidade}" />
+                                    <g:textField name="cidade" value="${parceiroInstance?.cidade}" maxlength="250" />
                                 </td>
                             </tr>
 
@@ -100,7 +100,7 @@
                                     <label for="endereco"><g:message code="endereco" default="Endereco" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: parceiroInstance, field: 'endereco', 'errors')}">
-                                    <g:textField name="endereco" value="${parceiroInstance?.endereco}" />
+                                    <g:textField name="endereco" value="${parceiroInstance?.endereco}" maxlength="250" />
                                 </td>
                             </tr>
 
@@ -109,7 +109,7 @@
                                     <label for="estado"><g:message code="estado" default="Estado" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: parceiroInstance, field: 'estado', 'errors')}">
-                                    <g:textField name="estado" value="${parceiroInstance?.estado}" />
+                                    <g:textField name="estado" value="${parceiroInstance?.estado}" maxlength="250" />
                                 </td>
                             </tr>
 
@@ -131,6 +131,12 @@
                     </span>
                 </div>
             </g:form>
+            <script type="text/javascript">
+            jQuery(function($){
+            	   $("#telefone").mask("(99) 9999-9999");
+            	   $("#cep").mask("99999-999");
+            	});
+            </script>
         </div>
     </body>
 </html>
