@@ -1,1 +1,6 @@
-teste
+Depois de baixada a aplicação co repositório deve-se executar os seguintes comandos na pasta raiz do projeto:
+
+> grails install-plugin jquery
+> grails install-plugin spring-security-core
+
+OBS.: direto da IDE (shift + ctrl + alt + G) nao precisa de digitar grails no inicio

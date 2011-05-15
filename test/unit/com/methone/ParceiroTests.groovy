@@ -8,7 +8,7 @@ class ParceiroTests extends GrailsUnitTestCase {
 	def Parceiro parceiro
 
 	Parceiro getParceiroPreenchido (){
-		new Parceiro(login : "login", email : "teste@teste.com", senha: "senha",
+		new Parceiro(username : "username", email : "teste@teste.com", password: "senha",
 				nome:"nome", telefone: "telefone", endereco : "endereco",
 				cep : "cep", estado: "estado", cidade : "cidade", interesse: Interesse.AMBOS)
 	}
@@ -44,19 +44,19 @@ class ParceiroTests extends GrailsUnitTestCase {
 		assertEquals 'Email ja existente', 'unique', parceiro.errors['email']
 	}
 
-	void testLogin(){
-		testBlank('login')
+	void testUsername(){
+		testBlank('username')
 
 		def parceiroTest = getParceiroPreenchido()
-		parceiro.login = "login"
+		parceiro.username = "username"
 		mockForConstraintsTests(Parceiro, [parceiroTest])
 
 		assertFalse parceiro.validate()
-		assertEquals 'Login ja existente', 'unique', parceiro.errors['login']
+		assertEquals 'Username ja existente', 'unique', parceiro.errors['username']
 	}
 
-	void testSenha(){
-		testBlank('senha')
+	void testPassword(){
+		testBlank('password')
 	}
 
 	void testNome(){

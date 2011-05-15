@@ -1,14 +1,14 @@
 package com.methone
 
+import com.methone.authentication.User
 import com.methone.enumeration.Interesse
 
 /**
  *  Entidade que representa um usuario no sistema.
  */
-class Parceiro  {
-	String login
+class Parceiro extends User {
+
 	String email
-	String senha
 	String nome
 	String telefone
 	String endereco
@@ -25,10 +25,9 @@ class Parceiro  {
 
 	static constraints = {
 		email(blank:false,unique:true,email:true)
-		login(blank:false,unique:true)
-		senha(blank:false,password:true)
 		nome(blank:false)
 		interesse(blank:false)
 		ranking(nullable:true)
 	}
+
 }

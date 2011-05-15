@@ -91,3 +91,17 @@ log4j = {
 
     warn   'org.mortbay.log'
 }
+
+// Added by the Spring Security Core plugin:
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'com.methone.authentication.User'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.methone.authentication.UserRole'
+grails.plugins.springsecurity.authority.className = 'com.methone.authentication.Role'
+
+// mapeamento estaticos das urls - permissao do spring security
+import grails.plugins.springsecurity.SecurityConfigType
+grails.plugins.springsecurity.securityConfigType = SecurityConfigType.InterceptUrlMap
+grails.plugins.springsecurity.interceptUrlMap = [
+	'/area/*':           ['IS_AUTHENTICATED_FULLY'],
+	'/especialidade/*':  ['IS_AUTHENTICATED_FULLY'],
+	'/principal/*':      ['IS_AUTHENTICATED_FULLY']
+]

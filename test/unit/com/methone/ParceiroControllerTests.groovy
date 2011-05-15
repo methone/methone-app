@@ -1,8 +1,7 @@
 package com.methone
 
+import grails.plugins.springsecurity.SpringSecurityService
 import grails.test.*
-
-import com.methone.enumeration.Interesse
 
 class ParceiroControllerTests extends ControllerUnitTestCase {
 
@@ -38,15 +37,27 @@ class ParceiroControllerTests extends ControllerUnitTestCase {
 
 	void testSaveSucesso(){
 		//  mocks do params para instanciar o parceiro no save
-		def paramsMock = [login : 'login', email : 'teste@teste.com', senha: "senha",
+		def paramsMock = [username : 'username', email : 'teste@teste.com', password: "senha",
 				nome:"nome", telefone: "telefone", endereco : "endereco",
 				cep : "cep", estado: "estado", cidade : "cidade", interesse: "AMBOS"]
 		controller.params.putAll(paramsMock)
 		mockDomain(Parceiro)
+
+		// mock do service do spring security
+		def springSecurityService = mockFor(SpringSecurityService)
+		// mock do metodo do service
+		springSecurityService.demand.encodePassword("senha") {
+			return "senha"
+		}
+		// atribui ao controller o mock
+        controller.springSecurityService = springSecurityService.createMock()
+
 		controller.metaClass.message = {args -> println "${args}"}
 		controller.save()
 		assertEquals "create", renderArgs.view
 		assertNull renderArgs.model
+
+	//	springSecurityService.verify()
 	}
 
 }

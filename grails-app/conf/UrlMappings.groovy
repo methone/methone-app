@@ -9,5 +9,9 @@ class UrlMappings {
 
 		"/"(view:"/index")
 		"500"(view:'/error')
+
+		// mapeamento dos controladores de login e logout
+		"/login/$action?" (controller: "login" )
+		"/logout/$action?"(controller: "logout")
 	}
 }

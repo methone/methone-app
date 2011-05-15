@@ -31,10 +31,10 @@
                         <tbody>
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="login"><g:message code="login" default="Login" /></label>
+                                    <label for="username"><g:message code="login" default="Login" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean: parceiroInstance, field: 'login', 'errors')}">
-                                    <g:textField name="login" value="${parceiroInstance?.login}"  maxlength="250"/>
+                                <td valign="top" class="value ${hasErrors(bean: parceiroInstance, field: 'username', 'errors')}">
+                                    <g:textField name="username" value="${parceiroInstance?.username}"  maxlength="250"/>
                                 </td>
                             </tr>
 
@@ -49,10 +49,10 @@
 
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="senha"><g:message code="senha" default="Senha" /></label>
+                                    <label for=password><g:message code="senha" default="Senha" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean: parceiroInstance, field: 'senha', 'errors')}">
-                                    <g:passwordField name="senha" value="${parceiroInstance?.senha}" maxlength="250" />
+                                <td valign="top" class="value ${hasErrors(bean: parceiroInstance, field: 'password', 'errors')}">
+                                    <g:passwordField name="password" value="${parceiroInstance?.password}" maxlength="250" />
                                 </td>
                             </tr>
 

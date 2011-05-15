@@ -11,6 +11,9 @@
 
     </head>
     <body>
+        <sec:ifLoggedIn>
+            <sec:username /> <g:link controller="logout"> <g:message code="sair" /></g:link>
+        </sec:ifLoggedIn>
         <div id="spinner" class="spinner" style="display:none;">
             <img src="${resource(dir:'images',file:'spinner.gif')}" alt="${message(code:'spinner.alt',default:'Loading...')}" />
         </div>
