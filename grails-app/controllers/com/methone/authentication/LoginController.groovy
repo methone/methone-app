@@ -13,6 +13,11 @@ import org.springframework.security.core.context.SecurityContextHolder as SCH
 import org.springframework.security.web.WebAttributes
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 
+/**
+ *
+ * Controller de login gerado pelo plugin do spring security do grails
+ *
+ */
 class LoginController {
 
 	/**
@@ -52,11 +57,11 @@ class LoginController {
 		String view = 'auth'
 		String postUrl = "${request.contextPath}${config.apf.filterProcessesUrl}"
 		render view: view, model: [postUrl: postUrl,
-		                           rememberMeParameter: config.rememberMe.parameter]
+					rememberMeParameter: config.rememberMe.parameter]
 	}
 
 	/**
-	 * The redirect action for Ajax requests. 
+	 * The redirect action for Ajax requests.
 	 */
 	def authAjax = {
 		response.setHeader 'Location', SpringSecurityUtils.securityConfig.auth.ajaxLoginFormUrl
@@ -68,7 +73,7 @@ class LoginController {
 	 */
 	def denied = {
 		if (springSecurityService.isLoggedIn() &&
-				authenticationTrustResolver.isRememberMe(SCH.context?.authentication)) {
+		authenticationTrustResolver.isRememberMe(SCH.context?.authentication)) {
 			// have cookie but the page is guarded with IS_AUTHENTICATED_FULLY
 			redirect action: full, params: params
 		}
@@ -80,8 +85,8 @@ class LoginController {
 	def full = {
 		def config = SpringSecurityUtils.securityConfig
 		render view: 'auth', params: params,
-			model: [hasCookie: authenticationTrustResolver.isRememberMe(SCH.context?.authentication),
-			        postUrl: "${request.contextPath}${config.apf.filterProcessesUrl}"]
+				model: [hasCookie: authenticationTrustResolver.isRememberMe(SCH.context?.authentication),
+					postUrl: "${request.contextPath}${config.apf.filterProcessesUrl}"]
 	}
 
 	/**
@@ -94,19 +99,19 @@ class LoginController {
 		def exception = session[WebAttributes.AUTHENTICATION_EXCEPTION]
 		if (exception) {
 			if (exception instanceof AccountExpiredException) {
-				msg = SpringSecurityUtils.securityConfig.errors.login.expired
+				msg = "${message(code: 'usuarioExpirado')}" //SpringSecurityUtils.securityConfig.errors.login.expired
 			}
 			else if (exception instanceof CredentialsExpiredException) {
-				msg = SpringSecurityUtils.securityConfig.errors.login.passwordExpired
+				msg = "${message(code: 'senhaExpirada')}" //SpringSecurityUtils.securityConfig.errors.login.passwordExpired
 			}
 			else if (exception instanceof DisabledException) {
-				msg = SpringSecurityUtils.securityConfig.errors.login.disabled
+				msg = "${message(code: 'usuarioDesabilitado')}" //SpringSecurityUtils.securityConfig.errors.login.disabled
 			}
 			else if (exception instanceof LockedException) {
-				msg = SpringSecurityUtils.securityConfig.errors.login.locked
+				msg = "${message(code: 'usuarioBloqueado')}" //SpringSecurityUtils.securityConfig.errors.login.locked
 			}
 			else {
-				msg = SpringSecurityUtils.securityConfig.errors.login.fail
+				msg = "${message(code: 'loginFalhou')}" //SpringSecurityUtils.securityConfig.errors.login.fail
 			}
 		}
 

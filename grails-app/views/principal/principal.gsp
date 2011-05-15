@@ -92,10 +92,10 @@
                 <h2>Available Controllers:</h2>
                 <ul>
                    <li class="controller">
-                         <a href="/methone-app/area">com.methone.AreaController</a>
+                         <a href="${request.contextPath}/area">com.methone.AreaController</a>
                    </li>
                    <li class="controller">
-                      <a href="/methone-app/especialidade">com.methone.EspecialidadeController</a>
+                      <a href="${request.contextPath}/especialidade">com.methone.EspecialidadeController</a>
                    </li>
                 </ul>
             </div>

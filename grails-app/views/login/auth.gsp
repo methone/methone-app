@@ -52,11 +52,11 @@
 			<form action='${postUrl}' method='POST' id='loginForm' class='cssform' autocomplete='off'>
 				<p>
 					<label for='username'><g:message code="login" /></label>
-					<input type='text' class='text_' name='j_username' id='username' />
+					<input type='text' class='text_' name='j_username' id='username' maxlength="250" />
 				</p>
 				<p>
 					<label for='password'><g:message code="senha" /></label>
-					<input type='password' class='text_' name='j_password' id='password' />
+					<input type='password' class='text_' name='j_password' id='password' maxlength="250" />
 				</p>
 				<p>
 					<label for='remember_me'><g:message code="lembrarMe" /></label>
@@ -69,7 +69,7 @@
 			</form>
 		</div>
 		<div>
-		  <a href="/methone-app/parceiro/create"><g:message code="cadastroParceiro"  /></a>
+		  <a href="${request.contextPath}/parceiro/create"><g:message code="cadastroParceiro"  /></a>
 		</div>
 	</div>
 <script type='text/javascript'>

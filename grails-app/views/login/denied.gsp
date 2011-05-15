@@ -5,6 +5,6 @@
 
 <body>
 <div class='body'>
-	<div class='errors'>Sorry, you're not authorized to view this page.</div>
+	<div class='errors'> <g:message code="acessoNegado" /></div>
 </div>
 </body>
