@@ -49,13 +49,17 @@ class ParceiroControllerTests extends ControllerUnitTestCase {
 		springSecurityService.demand.encodePassword("senha") {
 			return "senha"
 		}
+		springSecurityService.demand.reauthenticate("username","senha") {
+
+		}
 		// atribui ao controller o mock
         controller.springSecurityService = springSecurityService.createMock()
 
 		controller.metaClass.message = {args -> println "${args}"}
 		controller.save()
-		assertEquals "create", renderArgs.view
+		assertNull renderArgs.view
 		assertNull renderArgs.model
+		assertEquals "/principal/principal.gsp", redirectArgs.uri
 
 	//	springSecurityService.verify()
 	}

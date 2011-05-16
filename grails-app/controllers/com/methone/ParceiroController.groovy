@@ -13,13 +13,14 @@ class ParceiroController {
 
     def save = {
         def parceiroInstance = new Parceiro(params)
-        if (parceiroInstance.validate()) {
+        // TODO criar um servico que encapsula essa logica
+		// TODO criar um servico de email para notificar o usuario
+		if (parceiroInstance.validate()) {
+			def password = parceiroInstance.password
 			parceiroInstance.password = springSecurityService.encodePassword(parceiroInstance.password)
 			parceiroInstance.save(flush: true)
-			flash.message = "${message(code: 'salvoSucesso', args: [message(code: 'parceiro', default: 'Parceiro')])}"
-			// TODO enviar email para o usuario falando do login
-			//redirect(uri:"/index.gsp")
-			render(view: "create")
+			springSecurityService.reauthenticate(parceiroInstance.username, password)
+			redirect(uri:"/principal/principal.gsp")
         } else {
             render(view: "create", model: [parceiroInstance: parceiroInstance])
         }
