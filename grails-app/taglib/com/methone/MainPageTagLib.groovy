@@ -1,4 +1,4 @@
-package methone.app
+package com.methone
 
 /**
  *  Componemte que redireciona para a pagina principal

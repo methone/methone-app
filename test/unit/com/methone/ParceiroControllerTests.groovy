@@ -4,6 +4,7 @@ import grails.plugins.springsecurity.SpringSecurityService
 import grails.test.*
 
 class ParceiroControllerTests extends ControllerUnitTestCase {
+	def parceiroService
 
 	protected void setUp() {
 		super.setUp()
@@ -24,9 +25,10 @@ class ParceiroControllerTests extends ControllerUnitTestCase {
 	}
 
 	void testSaveErro(){
-		// mock das instancias de parceiro.
-		// adiciona os metodos gerados dinamicamente
-		mockDomain(Parceiro)
+		buildMocks()
+		parceiroService.demand.create() {
+			return false
+		}
 		controller.save()
 		assertEquals "create", renderArgs.view
 		assertNotNull renderArgs.model
@@ -41,27 +43,26 @@ class ParceiroControllerTests extends ControllerUnitTestCase {
 				nome:"nome", telefone: "telefone", endereco : "endereco",
 				cep : "cep", estado: "estado", cidade : "cidade", interesse: "AMBOS"]
 		controller.params.putAll(paramsMock)
-		mockDomain(Parceiro)
-
-		// mock do service do spring security
-		def springSecurityService = mockFor(SpringSecurityService)
-		// mock do metodo do service
-		springSecurityService.demand.encodePassword("senha") {
-			return "senha"
-		}
-		springSecurityService.demand.reauthenticate("username","senha") {
-
-		}
-		// atribui ao controller o mock
-        controller.springSecurityService = springSecurityService.createMock()
-
+		buildMocks()
 		controller.metaClass.message = {args -> println "${args}"}
 		controller.save()
 		assertNull renderArgs.view
 		assertNull renderArgs.model
 		assertEquals "/principal/principal.gsp", redirectArgs.uri
+	}
 
-	//	springSecurityService.verify()
+	private void buildMocks(){
+		// mock das instancias de parceiro.
+		// adiciona os metodos gerados dinamicamente
+		mockDomain(Parceiro)
+		// mock do service do spring security
+		parceiroService = mockFor(ParceiroService)
+		// atribui ao controller o mock
+		controller.parceiroService = parceiroService.createMock()
+		// mock do metodo do service
+		parceiroService.demand.create() {
+			return true
+		}
 	}
 
 }
