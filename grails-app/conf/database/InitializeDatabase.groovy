@@ -1,6 +1,6 @@
 package database
 
-import java.text.Normalizer.Form;
+
 
 import com.methone.Area
 import com.methone.Especialidade;
@@ -10,7 +10,7 @@ import com.methone.enumeration.Interesse
 /**
  *  Entidade responsavel pela carga inicial do banco de dados
  */
-class InitialzeDatabase {
+class InitializeDatabase {
 	def parceiroService
 
 	public void init(){

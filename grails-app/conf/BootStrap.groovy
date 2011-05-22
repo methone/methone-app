@@ -1,10 +1,10 @@
-import database.InitialzeDatabase
+import database.InitializeDatabase
 
 class BootStrap {
-	def initialzeDatabase
+	def initializeDatabase
 
     def init = { servletContext ->
-		initialzeDatabase.init();
+		initializeDatabase.init();
     }
 
 

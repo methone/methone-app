@@ -5,7 +5,7 @@ beans = {
   //  no futuro pode-se escolher o que sera executado conforme o ambiente
   // GrailsUtil.environment == "development"
 
-   initialzeDatabase(database.InitialzeDatabase) {
+   initializeDatabase(database.InitializeDatabase) {
 	 parceiroService = ref("parceiroService")
    }
 
