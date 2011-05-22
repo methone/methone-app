@@ -4,3 +4,8 @@ Depois de baixada a aplicacao co repositorio deve-se executar os seguintes coman
 > grails install-plugin spring-security-core
 
 OBS.: direto da IDE (shift + ctrl + alt + G) nao precisa de digitar grails no inicio
+
+
+A aplicacao possui um usuario default que eh setado na inicializacao
+login: usuario
+senha: senha

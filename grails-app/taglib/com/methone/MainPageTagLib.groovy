@@ -1,7 +1,7 @@
 package com.methone
 
 /**
- *  Componemte que redireciona para a pagina principal
+ *  Componente que redireciona para a pagina principal
  *  Para usar basta adiciona <g:redirectMainPage/> no gsp
  *
  */

@@ -16,4 +16,8 @@ class Especialidade {
 		nome(blank:false)
 		descricao(blank:false, widget:'textarea')
 	}
+	
+	String toString(){
+		descricao
+	}
 }

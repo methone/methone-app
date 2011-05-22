@@ -10,9 +10,13 @@ class Area {
 	String descricao
 
 	static hasMany = [especialidades:Especialidade, projetos:Projeto]
-	
+
 	static constraints = {
 		nome(blank:false)
 		descricao(blank:false, widget:'textarea')
+	}
+
+	String toString(){
+		descricao
 	}
 }
