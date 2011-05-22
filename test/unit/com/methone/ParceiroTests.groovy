@@ -3,8 +3,9 @@ package com.methone
 import grails.test.*
 
 import com.methone.enumeration.Interesse
+import com.methone.support.DomainUnitTest
 
-class ParceiroTests extends GrailsUnitTestCase {
+class ParceiroTests extends DomainUnitTest {
 	def Parceiro parceiro
 
 	Parceiro getParceiroPreenchido (){
@@ -33,7 +34,7 @@ class ParceiroTests extends GrailsUnitTestCase {
 	}
 
 	void testEmail(){
-		testBlank('email')
+		testBlank(parceiro,'email')
 
 		// teste email unico
 		def parceiroTest = getParceiroPreenchido()
@@ -45,7 +46,7 @@ class ParceiroTests extends GrailsUnitTestCase {
 	}
 
 	void testUsername(){
-		testBlank('username')
+		testBlank(parceiro,'username')
 
 		def parceiroTest = getParceiroPreenchido()
 		parceiro.username = "username"
@@ -56,11 +57,11 @@ class ParceiroTests extends GrailsUnitTestCase {
 	}
 
 	void testPassword(){
-		testBlank('password')
+		testBlank(parceiro,'password')
 	}
 
 	void testNome(){
-		testBlank('nome')
+		testBlank(parceiro,'nome')
 	}
 
 	void testInteresse(){
@@ -69,17 +70,5 @@ class ParceiroTests extends GrailsUnitTestCase {
 		assertEquals 'Interesse nulo', 'nullable', parceiro.errors['interesse']
 	}
 
-	void testBlank(def property){
-		parceiro."$property" = null
-		assertFalse parceiro.validate()
-		assertEquals  'nullable', parceiro.errors[property]
 
-		parceiro.properties[property] = ""
-		assertFalse parceiro.validate()
-		assertEquals 'blank', parceiro.errors[property]
-
-		parceiro.properties[property]  = "  "
-		assertFalse parceiro.validate()
-		assertEquals 'blank', parceiro.errors[property]
-	}
 }
