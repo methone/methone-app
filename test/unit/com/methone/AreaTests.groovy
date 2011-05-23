@@ -37,4 +37,8 @@ class AreaTests extends DomainUnitTest {
 	void testDescricao(){
 		testBlank(area,'descricao')
 	}
+
+	void testToString(){
+		assertEquals area.descricao, area.toString()
+	}
 }
