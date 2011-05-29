@@ -97,6 +97,10 @@
                    <li class="controller">
                       <a href="${request.contextPath}/especialidade">com.methone.EspecialidadeController</a>
                    </li>
+                   <li class="controller">
+                      <a href="${request.contextPath}/detalheParceiro/detail"><g:message code="detalheParceiro"  /></a>
+                   </li>
+
                 </ul>
             </div>
         </div>

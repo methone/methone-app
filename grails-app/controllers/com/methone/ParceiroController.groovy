@@ -1,13 +1,15 @@
 package com.methone
 
-
+/**
+ * Controller utilizado no cadastro de parceiro
+ */
 class ParceiroController {
 	def parceiroService
     static allowedMethods = [save: "POST"]
 
 
     def create = {
-        def parceiroInstance = new Parceiro()
+	    def parceiroInstance = new Parceiro()
         return [parceiroInstance: parceiroInstance]
     }
 

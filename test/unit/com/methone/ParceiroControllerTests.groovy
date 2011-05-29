@@ -26,7 +26,7 @@ class ParceiroControllerTests extends ControllerUnitTestCase {
 
 	void testSaveErro(){
 		buildMocks()
-		parceiroService.demand.create() {
+		parceiroService.demand.create() {parceiroInstance ->
 			return false
 		}
 		controller.save()
@@ -44,6 +44,10 @@ class ParceiroControllerTests extends ControllerUnitTestCase {
 				cep : "cep", estado: "estado", cidade : "cidade", interesse: "AMBOS"]
 		controller.params.putAll(paramsMock)
 		buildMocks()
+		// mock do metodo do service
+		parceiroService.demand.create() {parceiroInstance ->
+			return true
+		}
 		controller.metaClass.message = {args -> println "${args}"}
 		controller.save()
 		assertNull renderArgs.view
@@ -55,14 +59,11 @@ class ParceiroControllerTests extends ControllerUnitTestCase {
 		// mock das instancias de parceiro.
 		// adiciona os metodos gerados dinamicamente
 		mockDomain(Parceiro)
-		// mock do service do spring security
+		// mock do service do parceiro
 		parceiroService = mockFor(ParceiroService)
 		// atribui ao controller o mock
 		controller.parceiroService = parceiroService.createMock()
-		// mock do metodo do service
-		parceiroService.demand.create() {
-			return true
-		}
+
 	}
 
 }

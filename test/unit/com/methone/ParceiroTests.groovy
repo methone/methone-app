@@ -25,10 +25,12 @@ class ParceiroTests extends DomainUnitTest {
 
 	void testSucesso() {
 		parceiro.ranking = null;
+		parceiro.empresa = null
 		assertTrue parceiro.validate()
 		assertFalse parceiro.hasErrors()
 
 		parceiro.ranking = new Ranking()
+		parceiro.empresa = ""
 		assertTrue parceiro.validate()
 		assertFalse parceiro.hasErrors()
 	}

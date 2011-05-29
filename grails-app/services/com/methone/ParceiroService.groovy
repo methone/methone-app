@@ -1,6 +1,5 @@
 package com.methone
 
-import com.methone.Parceiro
 
 /**
  *
@@ -8,7 +7,7 @@ import com.methone.Parceiro
  *
  */
 class ParceiroService {
-    static transactional = true
+	static transactional = true
 
 	def springSecurityService
 
@@ -18,7 +17,7 @@ class ParceiroService {
 	 * @param parceiro parceiro a ser salvo
 	 * @return Retorna true caso o parceiro seja salvo com sucesso. Caso contrario false.
 	 */
-    public boolean create(Parceiro parceiro) {
+	public boolean create(Parceiro parceiro) {
 		// TODO criar um servico de email para notificar o usuario
 		if (parceiro != null && parceiro.validate()) {
 			String password = parceiro.password
@@ -28,5 +27,17 @@ class ParceiroService {
 			return true
 		}
 		return false
-    }
+	}
+
+	/**
+	 *
+	 * @return
+	 */
+	public Parceiro getCurrentUser(){
+		def currentUser = springSecurityService.getPrincipal()
+		if(currentUser != null && currentUser.id != null){
+			return Parceiro.get(currentUser.id)
+		}
+		return null
+	}
 }
