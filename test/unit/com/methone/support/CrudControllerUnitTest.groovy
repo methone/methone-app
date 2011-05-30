@@ -11,7 +11,7 @@ import grails.test.ControllerUnitTestCase
  *
  */
 abstract class CrudControllerUnitTest extends ControllerUnitTestCase {
-    // TODO com outras entidades no futuro...
+    // TODO fazer com outras entidades no futuro...
 
 	CrudControllerUnitTest(Class controllerClazz){
 		super(controllerClazz)

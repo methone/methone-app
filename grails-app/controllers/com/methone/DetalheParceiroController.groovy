@@ -4,11 +4,14 @@ package com.methone
  * Controller para manipular os detalhes do parceiro
  */
 class DetalheParceiroController {
+	static allowedMethods = [update: "POST"]
 	def parceiroService
 
 	def detail = {
 		def parceiroInstance =  parceiroService.getCurrentUser()
-		return [parceiroInstance:parceiroInstance]
+		if(parceiroInstance){
+			return [parceiroInstance:parceiroInstance]
+		}
 	}
 
 	def update = {
@@ -17,15 +20,15 @@ class DetalheParceiroController {
 			if (params.version) {
 				def version = params.version.toLong()
 				if (parceiroInstance.version > version) {
-					parceiroInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'parceiro')] as Object[], "Another user has updated this Especialidade while you were editing")
+					parceiroInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'seuPerfil')] as Object[], null)
 					render(view: "detail", model: [parceiroInstance: parceiroInstance])
 					return
 				}
 			}
 			parceiroInstance.properties = params
 			if (!parceiroInstance.hasErrors() && parceiroInstance.save(flush: true)) {
-				flash.message = "${message(code: 'default.updated.message', args: [message(code: 'parceiro'), parceiroInstance.id])}"
-				redirect(action: "detail", id: parceiroInstance.id)
+				flash.message = "${message(code: 'salvoSucesso', args: [message(code: 'parceiro')])}"
+				redirect(action: "detail")
 			} else {
 				render(view: "detail", model: [parceiroInstance: parceiroInstance])
 			}
