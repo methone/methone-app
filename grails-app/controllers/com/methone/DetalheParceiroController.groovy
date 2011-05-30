@@ -33,7 +33,7 @@ class DetalheParceiroController {
 				render(view: "detail", model: [parceiroInstance: parceiroInstance])
 			}
 		} else {
-			flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'parceiro'), params.id])}"
+			flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'parceiro')])}"
 			redirect(action: "detail")
 		}
 	}
