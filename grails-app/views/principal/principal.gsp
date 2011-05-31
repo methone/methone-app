@@ -100,6 +100,9 @@
                    <li class="controller">
                       <a href="${request.contextPath}/detalheParceiro/detail"><g:message code="detalheParceiro"  /></a>
                    </li>
+                   <li class="controller">
+                      <a href="${request.contextPath}/parceiro/changePasswordEmail"><g:message code="trocaSenhaEmail"  /></a>
+                   </li>
 
                 </ul>
             </div>

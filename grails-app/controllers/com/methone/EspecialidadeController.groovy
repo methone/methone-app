@@ -58,7 +58,6 @@ class EspecialidadeController {
             if (params.version) {
                 def version = params.version.toLong()
                 if (especialidadeInstance.version > version) {
-                    
                     especialidadeInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'especialidade.label', default: 'Especialidade')] as Object[], "Another user has updated this Especialidade while you were editing")
                     render(view: "edit", model: [especialidadeInstance: especialidadeInstance])
                     return

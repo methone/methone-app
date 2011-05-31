@@ -55,6 +55,22 @@ class ParceiroControllerTests extends ControllerUnitTestCase {
 		assertEquals "/principal/principal.gsp", redirectArgs.uri
 	}
 
+	void testChangePasswordEmail() {
+		Parceiro p = new Parceiro(id: 1)
+		buildMocks()
+		parceiroService.demand.getCurrentUser() { ->
+			return p
+		}
+		def map = controller.changePasswordEmail()
+		assertNotNull map
+		assertNotNull map.parceiroInstance
+		assertEquals p, map.parceiroInstance
+	}
+
+	void testSavePasswordEmail() {
+
+	}
+
 	private void buildMocks(){
 		// mock das instancias de parceiro.
 		// adiciona os metodos gerados dinamicamente

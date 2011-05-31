@@ -20,7 +20,7 @@ class DetalheParceiroController {
 			if (params.version) {
 				def version = params.version.toLong()
 				if (parceiroInstance.version > version) {
-					parceiroInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'seuPerfil')] as Object[], null)
+					parceiroInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'perfil')] as Object[], null)
 					render(view: "detail", model: [parceiroInstance: parceiroInstance])
 					return
 				}
