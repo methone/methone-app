@@ -3,9 +3,12 @@ package com.methone
 import grails.test.*
 
 import com.methone.enumeration.Interesse
+import com.methone.validation.EntityValidationService
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.Any;
 
 class DetalheParceiroControllerTests extends ControllerUnitTestCase {
 	def parceiroService
+	def entityValidationService
 
 	protected void setUp() {
         super.setUp()
@@ -32,15 +35,18 @@ class DetalheParceiroControllerTests extends ControllerUnitTestCase {
     }
 
 	void testUpdateVersionInvalida(){
-		def entity = createPersistedEntity()
-		controller.params.id = entity.id
-		controller.params.version = "0"
+		def parceiro = createPersistedEntity()
+		controller.params.id = parceiro.id
+		controller.params.version = 1
+		entityValidationService.demand.validateVersion()  { entity,versionInUse ->
+			return false
+		}
 		controller.update()
 		assertNotNull renderArgs.view
 		assertEquals "detail", renderArgs.view
 		assertNotNull renderArgs.model
 		assertNotNull renderArgs.model.parceiroInstance
-		assertEquals entity, renderArgs.model.parceiroInstance
+		assertEquals parceiro, renderArgs.model.parceiroInstance
 	}
 
 	void testUpdateSucesso(){
@@ -79,7 +85,12 @@ class DetalheParceiroControllerTests extends ControllerUnitTestCase {
 	private void buildMocks(){
 		mockDomain(Parceiro)
 		parceiroService = mockFor(ParceiroService)
+		entityValidationService = mockFor(EntityValidationService)
 		controller.parceiroService = parceiroService.createMock()
+		controller.entityValidationService = entityValidationService.createMock()
+		entityValidationService.demand.validateVersion()  { entity,versionInUse->
+			return true
+		}
 	}
 
 	private createPersistedEntity(){

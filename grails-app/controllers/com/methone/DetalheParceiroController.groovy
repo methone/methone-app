@@ -6,6 +6,7 @@ package com.methone
 class DetalheParceiroController {
 	static allowedMethods = [update: "POST"]
 	def parceiroService
+    def entityValidationService
 
 	def detail = {
 		def parceiroInstance =  parceiroService.getCurrentUser()
@@ -17,13 +18,9 @@ class DetalheParceiroController {
 	def update = {
 		def parceiroInstance = Parceiro.get(params.id)
 		if (parceiroInstance) {
-			if (params.version) {
-				def version = params.version.toLong()
-				if (parceiroInstance.version > version) {
-					parceiroInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'perfil')] as Object[], null)
-					render(view: "detail", model: [parceiroInstance: parceiroInstance])
-					return
-				}
+			if(!entityValidationService.validateVersion(parceiroInstance, params.version)){
+				render(view: "detail", model: [parceiroInstance: parceiroInstance])
+				return
 			}
 			parceiroInstance.properties = params
 			if (!parceiroInstance.hasErrors() && parceiroInstance.save(flush: true)) {
