@@ -8,6 +8,8 @@ package com.methone
 class ParceiroTagLib {
 
 	def formularioParceiro  = { attrs ->
-		out << render(template:"/templates/parceiroTemplate", model:[parceiroInstance:attrs.parceiroInstance, action:attrs.action, cadastro:attrs.cadastro, message: attrs.message])
+		out << render(template:"/templates/parceiroTemplate",
+			model:[parceiroInstance:attrs.parceiroInstance, action:attrs.action,
+				cadastro:attrs.cadastro, message: attrs.message, enctype : attrs.enctype])
 	}
 }

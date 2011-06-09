@@ -6,13 +6,22 @@
         <g:renderErrors bean="${parceiroInstance}" as="list" />
     </div>
 </g:hasErrors>
-<g:form action="${action}" >
+<g:form action="${action}" enctype="${enctype}">
  <div class="dialog">
      <table>
          <tbody>
              <g:if test="${cadastro == 'false'}">
                  <g:hiddenField name="id" value="${parceiroInstance?.id}" />
                  <g:hiddenField name="version" value="${parceiroInstance?.version}" />
+
+                 <tr class="prop">
+	                 <td valign="top" class="name">
+	                     <label for="file"><g:message code="selecioneImagem"  /></label>
+	                 </td>
+	                 <td valign="top" class="value ${hasErrors(bean: parceiroInstance, field: 'urlImagem', 'errors')}">
+	                     <input type="file" name="file" id="file"/>
+	                 </td>
+	             </tr>
              </g:if>
 
              <g:if test="${cadastro == 'true'}">

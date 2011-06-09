@@ -17,6 +17,8 @@ class Parceiro extends User {
 	String cidade
 	String empresa
 	Interesse interesse
+	String urlImagem
+
 
 	static hasOne = [ranking:Ranking]
 
@@ -30,5 +32,6 @@ class Parceiro extends User {
 		interesse(blank:false)
 		ranking(nullable:true)
 		empresa(nullable:true, blank:true)
+		urlImagem(nullable:true, blank:true)
 	}
 }

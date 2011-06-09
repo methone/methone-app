@@ -14,7 +14,7 @@ class ParceiroTagLibTests extends TagLibUnitTestCase {
     void testFormularioParceiro() {
 		Parceiro p = new Parceiro();
 		p.id = 1
-		def attrs = [parceiroInstance:p, action:"save", cadastro : true, message : "message"]
+		def attrs = [parceiroInstance:p, action:"save", cadastro : true, message : "message", enctype : "enctype"]
 		tagLib.formularioParceiro(attrs)
 		assertNotNull tagLib.renderArgs
 		assertNotNull tagLib.renderArgs.template
@@ -28,6 +28,7 @@ class ParceiroTagLibTests extends TagLibUnitTestCase {
 		assertEquals "save", tagLib.renderArgs.model.action
 		assertTrue tagLib.renderArgs.model.cadastro
 		assertEquals "message", tagLib.renderArgs.model.message
+		assertEquals "enctype", tagLib.renderArgs.model.enctype
 
     }
 }
