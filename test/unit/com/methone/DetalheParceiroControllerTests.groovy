@@ -26,12 +26,16 @@ class DetalheParceiroControllerTests extends ControllerUnitTestCase {
 		parceiroService.demand.getCurrentUser()  { ->
 			return p
 		}
+		controller.parceiroService.diretorioImagemRelativo = "diretorio"
 		def map = controller.detail()
 		assertNotNull map
-		assertEquals  1, map.size()
+		assertEquals  2, map.size()
 		assertNotNull map.parceiroInstance
 		assertTrue map.parceiroInstance instanceof Parceiro
 		assertNotNull  map.parceiroInstance.id
+
+		assertNotNull map.diretorioImagem
+		assertEquals controller.parceiroService.diretorioImagemRelativo, map.diretorioImagem
     }
 
 	void testUpdateVersionInvalida(){
@@ -50,6 +54,9 @@ class DetalheParceiroControllerTests extends ControllerUnitTestCase {
 	}
 
 	void testUpdateSucesso(){
+		parceiroService.demand.updateDetalheParceiro()  { parceiroInstance, nomeOriginal, file ->
+			return true
+		}
 		def entity = createPersistedEntity()
 		controller.params.id = entity.id
 		controller.update();
@@ -60,6 +67,9 @@ class DetalheParceiroControllerTests extends ControllerUnitTestCase {
 	}
 
 	void testUpdateErroValidacao(){
+		parceiroService.demand.updateDetalheParceiro()  { parceiroInstance, nomeOriginal, file ->
+			return false
+		}
 		def entity = createPersistedEntity()
 		mockParams()
 		def set = controller.params.keySet()

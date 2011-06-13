@@ -14,14 +14,22 @@
                  <g:hiddenField name="id" value="${parceiroInstance?.id}" />
                  <g:hiddenField name="version" value="${parceiroInstance?.version}" />
 
+				 <g:if test="${parceiroInstance?.urlImagem != null}">
+                    <tr>
+                       <td valign="top" colspan="2">
+                         <img src="${resource(dir: diretorioImagem, file: parceiroInstance?.urlImagem)}"  style="width:140px;height:140px" />
+                       </td>
+	                </tr>
+	             </g:if>
+
                  <tr class="prop">
-	                 <td valign="top" class="name">
-	                     <label for="file"><g:message code="selecioneImagem"  /></label>
-	                 </td>
+                     <td valign="top" class="name">
+                         <label for="file"><g:message code="selecioneImagem"  /></label>
+                     </td>
 	                 <td valign="top" class="value ${hasErrors(bean: parceiroInstance, field: 'urlImagem', 'errors')}">
 	                     <input type="file" name="file" id="file"/>
 	                 </td>
-	             </tr>
+	              </tr>
              </g:if>
 
              <g:if test="${cadastro == 'true'}">

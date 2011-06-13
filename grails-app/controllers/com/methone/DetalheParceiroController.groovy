@@ -11,7 +11,7 @@ class DetalheParceiroController {
 	def detail = {
 		def parceiroInstance =  parceiroService.getCurrentUser()
 		if(parceiroInstance){
-			return [parceiroInstance:parceiroInstance]
+			return [parceiroInstance:parceiroInstance, diretorioImagem : parceiroService.diretorioImagemRelativo]
 		}
 	}
 
@@ -23,9 +23,13 @@ class DetalheParceiroController {
 				return
 			}
 			parceiroInstance.properties = params
-		    //TODO descomentar
-			//	upload(parceiroInstance)
-			if (!parceiroInstance.hasErrors() && parceiroInstance.save(flush: true)) {
+			def nomeOriginal = null
+			def file = null
+			if(params.file){
+				nomeOriginal = params.file.originalFilename
+				file = request.getFile("file")
+			}
+			if (parceiroService.updateDetalheParceiro(parceiroInstance, nomeOriginal, file)) {
 				flash.message = "${message(code: 'salvoSucesso', args: [message(code: 'parceiro')])}"
 				redirect(action: "detail")
 			} else {
@@ -37,18 +41,4 @@ class DetalheParceiroController {
 		}
 	}
 
-	// TODO verificar POST
-	def upload = { parceiroInstance ->
-		def nomeOriginal = params.file.originalFilename
-		def f = request.getFile("file")
-		if(!f.empty){
-			// TODO url devera ser externa a aplicacao (vinda de um arquivo de propriedades)
-			f.transferTo(new File("web-app/images/uploads/${nomeOriginal}"))
-			// TODO a url da imagem nao pode ser o nome original da imagem
-			parceiroInstance.urlImagem = nomeOriginal
-		} else {
-			// TODO mensagem do bundle...
-			flash.message = "nao foi possível transferir o arquivo"
-		}
-	}
 }
