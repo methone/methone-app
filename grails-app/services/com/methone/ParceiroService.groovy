@@ -2,7 +2,7 @@ package com.methone
 
 
 import org.grails.plugins.imagetools.*
-import org.springframework.web.multipart.commons.CommonsMultipartFile
+import org.springframework.web.multipart.MultipartFile
 
 
 /**
@@ -16,6 +16,7 @@ class ParceiroService {
 	static transactional = true
 	String diretorioImagem
 	String diretorioImagemRelativo
+	long tamanhoMaximoImagem = 512000 // (512000 bytes = 500 KB)
 	def springSecurityService
 	def imageService
 
@@ -56,7 +57,7 @@ class ParceiroService {
 	 * @param imagem foto do parceiro
 	 * @return Retorna true caso seja bem sucedida a atualizacao
 	 */
-	public boolean updateDetalheParceiro(Parceiro parceiro, String nomeImagem, CommonsMultipartFile imagem){
+	public boolean updateDetalheParceiro(Parceiro parceiro, String nomeImagem, MultipartFile imagem){
 		if(parceiro == null || parceiro.id == null){
 			return false
 		}
@@ -70,20 +71,22 @@ class ParceiroService {
 	 * @param imagem foto do parceiro
 	 * @return Retorna true caso a imagem seja tranferida com sucesso. Caso contrario false.
 	 */
-	private boolean uploadImagemParceiro(Parceiro parceiro, String nomeImagem, CommonsMultipartFile imagem){
+	private boolean uploadImagemParceiro(Parceiro parceiro, String nomeImagem, MultipartFile imagem){
 		if(imagem != null && !imagem.empty && nomeImagem != null){
-			if(imageService.extensaoValida(nomeImagem)){
-				if(parceiro.urlImagem){
-					// apaga a imagem antiga caso exista
-					imageService.deleteImage(diretorioImagem, parceiro.urlImagem)
-				}
-				def nome = "imagem_" + parceiro.id + "_" + nomeImagem
-				imageService.saveImage(diretorioImagem,nome,imagem)
-				parceiro.urlImagem = nome
-			} else {
+			if(!imageService.extensaoValida(nomeImagem)){
 				parceiro.errors.rejectValue "urlImagem", "extensaoArquivoInvalida"
 				return false
+			} else if(!imageService.tamanhoImagemValido(imagem,tamanhoMaximoImagem)){
+			    parceiro.errors.rejectValue "urlImagem", "tamanhoArquivoInvalido"
+			    return false
 			}
+			if(parceiro.urlImagem){
+				// apaga a imagem antiga caso exista
+				imageService.deleteImage(diretorioImagem, parceiro.urlImagem)
+			}
+			def nome = "imagem_" + parceiro.id + "_" + nomeImagem
+			imageService.saveImage(diretorioImagem,nome,imagem)
+			parceiro.urlImagem = nome
 		}
 		return true
 	}

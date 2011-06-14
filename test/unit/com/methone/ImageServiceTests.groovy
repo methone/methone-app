@@ -1,13 +1,19 @@
 package com.methone
 
-import grails.test.*
+import grails.test.GrailsUnitTestCase
+
+import org.springframework.mock.web.MockMultipartFile
+import org.springframework.web.multipart.MultipartFile
+
 
 class ImageServiceTests extends GrailsUnitTestCase {
     ImageService imageService
 
+
 	protected void setUp() {
         super.setUp()
 		imageService = new ImageService()
+
     }
 
     protected void tearDown() {
@@ -51,4 +57,96 @@ class ImageServiceTests extends GrailsUnitTestCase {
 		assertFalse imageService.extensaoValida("")
 		assertFalse imageService.extensaoValida(null)
 	}
+
+	void testSaveImageNull(){
+		try {
+			imageService.saveImage(null, null, null)
+		} catch (IOException e) {
+			fail()
+		}
+	}
+
+	void testSaveImageSucesso(){
+		try {
+			MultipartFile multipartFile = getMockMultipartFile(getAbsolutePath("/com/methone/resources/methone.jpg"));
+			assertNotNull multipartFile
+			imageService.saveImage(getAbsolutePath("/com/methone/resources/"), "methone_test.jpg", multipartFile)
+			// verifica se o arquivo foi salvo corretamente
+			File file = new File(getAbsolutePath("/com/methone/resources/methone_test.jpg"))
+			assertNotNull file
+			assertNotNull file.length()
+			assertTrue file.length() > 0
+			// deleta o arquivo depois do teste
+			file.delete()
+		} catch (IOException e) {
+			fail()
+		}
+	}
+
+	void testSaveImageDiretorioNaoExistente(){
+		try {
+			MultipartFile multipartFile = getMockMultipartFile(getAbsolutePath("/com/methone/resources/methone.jpg"));
+			assertNotNull multipartFile
+			imageService.saveImage("diretorioNaoExistente", "methone_test.jpg", multipartFile)
+		} catch (IOException e) {
+			assertNotNull e
+		}
+	}
+
+	void testDeleteImageDiretorioNaoExistente(){
+		try {
+			imageService.deleteImage("diretorioNaoExistente", "methone_test.jpg")
+		} catch (IOException e) {
+			assertNotNull e
+		}
+	}
+
+	void testDeleteImageSucesso(){
+		try {
+			MultipartFile multipartFile = getMockMultipartFile(getAbsolutePath("/com/methone/resources/methone.jpg"));
+			assertNotNull multipartFile
+			multipartFile.transferTo(new File(getAbsolutePath("/com/methone/resources/") + "methone_test.jpg"))
+			imageService.deleteImage(getAbsolutePath("/com/methone/resources/"), "methone_test.jpg")
+		} catch (IOException e) {
+			fail()
+		}
+	}
+
+	void testTamanhoImagemValido(){
+		assertFalse imageService.tamanhoImagemValido(null, 0)
+		MultipartFile multipartFile = getMockMultipartFile(getAbsolutePath("/com/methone/resources/methone.jpg"));
+		assertNotNull multipartFile
+
+		assertFalse imageService.tamanhoImagemValido(multipartFile, 0)
+		assertTrue imageService.tamanhoImagemValido(multipartFile, 10000000000000)
+	}
+
+	private MultipartFile getMockMultipartFile(String path) {
+		String contentType  = "image/jpeg"
+		File file = new File(path)
+		InputStream inputStream
+		try {
+			inputStream = new FileInputStream(file)
+		} catch (FileNotFoundException e) {
+			return null
+		}
+		MultipartFile multipartFile
+		try {
+			multipartFile = new MockMultipartFile(file.getName(), file.getAbsolutePath(), contentType, inputStream)
+		} catch (IOException e) {
+			return null;
+		}
+		return multipartFile
+	}
+
+	private String getAbsolutePath(String relativePath) {
+		URL resource = getClass().getResource(relativePath)
+		String path = resource != null ? resource.getPath() : ""
+		path = path.replaceAll("file:/", "")
+		if ("\\" == File.separator) {
+			path = path.replaceAll("/", File.separator + File.separator)
+		}
+		return path.replaceAll("%20", " ")
+	}
+
 }

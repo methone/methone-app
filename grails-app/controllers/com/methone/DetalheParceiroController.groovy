@@ -19,7 +19,7 @@ class DetalheParceiroController {
 		def parceiroInstance = Parceiro.get(params.id)
 		if (parceiroInstance) {
 			if(!entityValidationService.validateVersion(parceiroInstance, params.version)){
-				render(view: "detail", model: [parceiroInstance: parceiroInstance])
+				render(view: "detail", model: [parceiroInstance: parceiroInstance, diretorioImagem : parceiroService.diretorioImagemRelativo])
 				return
 			}
 			parceiroInstance.properties = params
@@ -33,7 +33,7 @@ class DetalheParceiroController {
 				flash.message = "${message(code: 'salvoSucesso', args: [message(code: 'parceiro')])}"
 				redirect(action: "detail")
 			} else {
-			  render(view: "detail", model: [parceiroInstance: parceiroInstance])
+			  render(view: "detail", model: [parceiroInstance: parceiroInstance, diretorioImagem : parceiroService.diretorioImagemRelativo])
 			}
 		} else {
 			flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'parceiro')])}"

@@ -26,7 +26,7 @@ class DetalheParceiroControllerTests extends ControllerUnitTestCase {
 		parceiroService.demand.getCurrentUser()  { ->
 			return p
 		}
-		controller.parceiroService.diretorioImagemRelativo = "diretorio"
+
 		def map = controller.detail()
 		assertNotNull map
 		assertEquals  2, map.size()
@@ -51,6 +51,9 @@ class DetalheParceiroControllerTests extends ControllerUnitTestCase {
 		assertNotNull renderArgs.model
 		assertNotNull renderArgs.model.parceiroInstance
 		assertEquals parceiro, renderArgs.model.parceiroInstance
+
+		assertNotNull renderArgs.model.diretorioImagem
+		assertEquals controller.parceiroService.diretorioImagemRelativo, renderArgs.model.diretorioImagem
 	}
 
 	void testUpdateSucesso(){
@@ -83,6 +86,9 @@ class DetalheParceiroControllerTests extends ControllerUnitTestCase {
 		assertNotNull renderArgs.model
 		assertNotNull renderArgs.model.parceiroInstance
 		assertEquals entity, renderArgs.model.parceiroInstance
+
+		assertNotNull renderArgs.model.diretorioImagem
+		assertEquals controller.parceiroService.diretorioImagemRelativo, renderArgs.model.diretorioImagem
 	}
 
 	void testUpdateErro(){
@@ -101,6 +107,7 @@ class DetalheParceiroControllerTests extends ControllerUnitTestCase {
 		entityValidationService.demand.validateVersion()  { entity,versionInUse->
 			return true
 		}
+		controller.parceiroService.diretorioImagemRelativo = "diretorio"
 	}
 
 	private createPersistedEntity(){
