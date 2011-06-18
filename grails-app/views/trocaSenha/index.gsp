@@ -12,12 +12,15 @@
 			<g:if test="${message}">
 				<div class="message">${message}</div>
 			</g:if>
+			<g:if test="${flash.message}">
+            	<div class="message">${flash.message}</div>
+            </g:if>
 			<g:hasErrors bean="${parceiroInstance}">
 			    <div class="errors">
 			    	<g:renderErrors bean="${parceiroInstance}" as="list" />
 			    </div>
 			</g:hasErrors>
-			<g:form action="savePasswordEmail" >
+			<g:form action="salvar" >
  				<div class="dialog">
 			    	<table>
 			        <tbody>

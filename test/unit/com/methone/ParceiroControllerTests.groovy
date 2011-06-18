@@ -1,6 +1,5 @@
 package com.methone
 
-import grails.plugins.springsecurity.SpringSecurityService
 import grails.test.*
 
 class ParceiroControllerTests extends ControllerUnitTestCase {
@@ -53,22 +52,6 @@ class ParceiroControllerTests extends ControllerUnitTestCase {
 		assertNull renderArgs.view
 		assertNull renderArgs.model
 		assertEquals "/principal/principal.gsp", redirectArgs.uri
-	}
-
-	void testChangePasswordEmail() {
-		Parceiro p = new Parceiro(id: 1)
-		buildMocks()
-		parceiroService.demand.getCurrentUser() { ->
-			return p
-		}
-		def map = controller.changePasswordEmail()
-		assertNotNull map
-		assertNotNull map.parceiroInstance
-		assertEquals p, map.parceiroInstance
-	}
-
-	void testSavePasswordEmail() {
-
 	}
 
 	private void buildMocks(){
