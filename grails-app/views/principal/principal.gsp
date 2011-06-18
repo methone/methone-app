@@ -25,7 +25,6 @@
 
                 </ul>
                 
-                <g:areaEspecilidadeCheck area="${com.methone.Area.get(1)}"></g:areaEspecilidadeCheck>
             </div>
         </div>
     </body>
