@@ -4,7 +4,7 @@
 </head>
 
 <body>
-<div class='body'>
-	<div class='errors'> <g:message code="acessoNegado" /></div>
+<div>
+	<div> <g:message code="acessoNegado" /></div>
 </div>
 </body>

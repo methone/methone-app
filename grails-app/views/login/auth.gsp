@@ -1,71 +1,32 @@
 <head>
-<meta name='layout' content='main' />
-<title><g:message code="login" /></title>
-<style type='text/css' media='screen'>
-#login {
-	margin:15px 0px; padding:0px;
-	text-align:center;
-}
-#login .inner {
-	width:260px;
-	margin:0px auto;
-	text-align:left;
-	padding:10px;
-	border-top:1px dashed #499ede;
-	border-bottom:1px dashed #499ede;
-	background-color:#EEF;
-}
-#login .inner .fheader {
-	padding:4px;margin:3px 0px 3px 0;color:#2e3741;font-size:14px;font-weight:bold;
-}
-#login .inner .cssform p {
-	clear: left;
-	margin: 0;
-	padding: 5px 0 8px 0;
-	padding-left: 105px;
-	border-top: 1px dashed gray;
-	margin-bottom: 10px;
-	height: 1%;
-}
-#login .inner .cssform input[type='text'] {
-	width: 120px;
-}
-#login .inner .cssform label {
-	font-weight: bold;
-	float: left;
-	margin-left: -105px;
-	width: 100px;
-}
-#login .inner .login_message {color:red;}
-#login .inner .text_ {width:120px;}
-#login .inner .chk {height:12px;}
-</style>
+   <meta name='layout' content='main' />
+   <title><g:message code="login" /></title>
 </head>
 
 <body>
 	<div id='login'>
-		<div class='inner'>
+		<div>
 			<g:if test='${flash.message}'>
-			<div class='login_message'>${flash.message}</div>
+			<div>${flash.message}</div>
 			</g:if>
-			<div class='fheader'><g:message code="facaLogin" /> </div>
-			<form action='${postUrl}' method='POST' id='loginForm' class='cssform' autocomplete='off'>
-				<p>
+			<div><g:message code="facaLogin" /> </div>
+			<form action='${postUrl}' method='POST' id='loginForm'  autocomplete='off'>
+				<div class="divInternaFormulario">
 					<label for='username'><g:message code="login" /></label>
-					<input type='text' class='text_' name='j_username' id='username' maxlength="250" />
-				</p>
-				<p>
+					<input type='text' class="inputText"  name='j_username' id='username' maxlength="250" />
+				</div>
+				<div class="divInternaFormulario">
 					<label for='password'><g:message code="senha" /></label>
-					<input type='password' class='text_' name='j_password' id='password' maxlength="250" />
-				</p>
-				<p>
+					<input type='password' class="inputText"  name='j_password' id='password' maxlength="250" />
+				</div>
+				<div class="divInternaFormulario">
 					<label for='remember_me'><g:message code="lembrarMe" /></label>
-					<input type='checkbox' class='chk' name='${rememberMeParameter}' id='remember_me'
+					<input type='checkbox' name='${rememberMeParameter}' id='remember_me'
 					<g:if test='${hasCookie}'>checked='checked'</g:if> />
-				</p>
-				<p>
+				</div>
+				<div class="divInternaFormulario">
 					<input type='submit' value='${message(code: 'entrar')}' />
-				</p>
+				</div>
 			</form>
 		</div>
 		<div>
