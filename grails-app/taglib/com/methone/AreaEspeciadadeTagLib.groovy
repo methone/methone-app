@@ -8,7 +8,7 @@ class AreaEspeciadadeTagLib {
 	def areaEspecilidadeCheck  = { attrs ->
 		def especialidadeList = Especialidade.findAllByArea(attrs.area)		
 		out << render(template:"/templates/areaEspecialidadeTemplate",
-			model:[area:attrs.area, especialidades: especialidadeList])
+			model:[area:attrs.area, especialidades: especialidadeList, especialidadeSelecionadas:attrs.especialidadeSelecionadas])
 	}
 	
 }

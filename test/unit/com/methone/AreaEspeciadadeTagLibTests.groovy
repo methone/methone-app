@@ -25,7 +25,7 @@ class AreaEspeciadadeTagLibTests extends TagLibUnitTestCase {
 		especialidade.area = area
 		especialidade.save()	
 		
-		def attrs = [area:area]
+		def attrs = [area:area, especialidadeSelecionadas:[especialidade]]
 		
 		tagLib.areaEspecilidadeCheck(attrs)
 		assertNotNull tagLib.renderArgs
@@ -33,11 +33,13 @@ class AreaEspeciadadeTagLibTests extends TagLibUnitTestCase {
 		assertNotNull tagLib.renderArgs.model
 		assertNotNull tagLib.renderArgs.model.area
 		assertNotNull tagLib.renderArgs.model.especialidades
+		assertNotNull tagLib.renderArgs.model.especialidadeSelecionadas
 		
 		assertEquals "/templates/areaEspecialidadeTemplate", tagLib.renderArgs.template
 		assertEquals area, tagLib.renderArgs.model.area
 		def list = [especialidade]
 		assertEquals list, tagLib.renderArgs.model.especialidades
+		assertEquals list, tagLib.renderArgs.model.especialidadeSelecionadas
 		
     }
 }

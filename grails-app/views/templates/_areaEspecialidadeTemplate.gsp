@@ -9,10 +9,13 @@
      <span id="open" class="hand active" >+ ${area}</span><span id="close" class="hand inactive" >- ${area}</span>
      <div id="divFade" class="inactive" >
 	 <g:each var="especialidade" in="${especialidades}">
-			<input type="checkbox" name="especialidade"/> ${especialidade}<br />			
+			<input type="checkbox" name="especialidade"
+			   <g:each var="selecionada" in="${especialidadeSelecionadas}">
+                  <g:if test="${selecionada.id == especialidade.id}" >checked="checked"</g:if>			   
+			   </g:each>
+			/>${especialidade}<br />			
  	 </g:each>
  	 </div>    
-     
 </div>
 
 <script>
