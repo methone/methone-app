@@ -38,7 +38,7 @@ Thumbs.db
 .settings/
 *.classpath
 *.project
-*.classpath
-
-
+*.class
+/classes
+/bin
 /target
