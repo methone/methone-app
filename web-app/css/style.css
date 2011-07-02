@@ -1,45 +1,140 @@
+html * {
+	margin: 0;
+}
 
+body {
+	color: #333333;
+	font: 13px verdana, arial, helvetica, sans-serif;
+}
 
 #header {
-    background-color: #01253F;
-    border-bottom: 3px solid #BFCED7;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
+	background-color: #01253F;
+	border-bottom: 3px solid #BFCED7;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
 	height: 110px;
 }
 
 #header .tail {
-    background-image: url("../images/skin/header-tail.png");
-    background-repeat: repeat-x;
-    height: 6px;
-    position: absolute;
-    width: 100%;
-    z-index: 1;
+	background-image: url("../images/skin/header-tail.png");
+	background-repeat: repeat-x;
+	height: 6px;
+	position: absolute;
+	width: 100%;
+	z-index: 1;
 }
 
 #header .wrapper {
-    height: 282px;
+	height: 282px;
 }
 
 .wrapper {
-    margin: 0 auto;
-    position: relative;
-    width: 1002px;
+	margin: 0 auto;
+	position: relative;
+	width: 1002px;
 }
 
 #logo {
-    left: 30px;
-    position: absolute;
-    top: 0;
+	left: 30px;
+	position: absolute;
+	top: 0;
 }
 
-.inputText {
-	width: 130px;
-	border: 1px solid;
+#login {
+	margin-left: 240px;
+	margin-top: 40px;
+	width: 290px;	
+	padding: 10px;
 }
 
-.divInternaFormulario {
+#innerLogin {
+	border: solid 1px;		
+	padding: 10px;	
+}
+
+div.divPadding {
 	padding-top: 3px;
 	padding-bottom: 3px;
+}
+
+div .divInfo {
+	font-weight: bold;	
+}
+
+div .clear {
+	clear: both;	
+}
+
+input,select,textarea {
+	background-color: #fcfcfc;
+	border: 1px solid #ccc;
+	font: 13px verdana, arial, helvetica, sans-serif;
+	margin: 2px 0;
+	padding: 2px 4px;
+}
+
+.inputRight {
+	float: right;
+}
+
+select {
+	padding: 2px 2px 2px 0;
+}
+
+textarea {
+	width: 250px;
+	height: 150px;
+	vertical-align: top;
+}
+
+input:focus,select:focus,textarea:focus {
+	border: 1px solid #b2d1ff;
+}
+
+a:link, a:visited {
+	color: #666;
+	font-weight: bold;
+	text-decoration: none;	
+}
+
+a:hover {
+	color: #666;
+	font-weight: bold;
+	text-decoration: underline;		
+}
+
+label {
+	float: left;
+	width: 80px;
+	padding-top: 3px;
+}
+
+/* mensagens de erro */
+
+.message {
+    background: #f3f8fc url(../images/skin/information.png) 8px 50% no-repeat;
+    border: 1px solid #b2d1ff;
+    color: #006dba;
+    margin: 10px 0 5px 0;
+    padding: 5px 5px 5px 30px
+}
+
+div.errors {
+    background: #fff3f3;
+    border: 1px solid red;
+    color: #cc0000;
+    margin: 10px 0 5px 0;
+    padding: 5px 0 5px 0;
+}
+
+div.errors ul {
+    list-style: none;
+    padding: 0;
+}
+
+div.errors li {
+	background: url(../images/skin/exclamation.png) 8px 0% no-repeat;
+    line-height: 16px;
+    padding-left: 30px;
 }

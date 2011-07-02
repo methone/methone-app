@@ -4,32 +4,34 @@
 </head>
 
 <body>
+	
 	<div id='login'>
-		<div>
-			<g:if test='${flash.message}'>
-			<div>${flash.message}</div>
+	     <g:if test='${flash.message}'>
+			  <div class="message">${flash.message}</div>
 			</g:if>
-			<div><g:message code="facaLogin" /> </div>
+		<div id="innerLogin">			
+			<div class="divPadding divInfo"><g:message code="facaLogin" /> </div>
 			<form action='${postUrl}' method='POST' id='loginForm'  autocomplete='off'>
-				<div class="divInternaFormulario">
+				<div class="divPadding">
 					<label for='username'><g:message code="login" /></label>
-					<input type='text' class="inputText"  name='j_username' id='username' maxlength="250" />
+					<input type='text' name='j_username' id='username' maxlength="250" />
 				</div>
-				<div class="divInternaFormulario">
+				<div class="divPadding">
 					<label for='password'><g:message code="senha" /></label>
-					<input type='password' class="inputText"  name='j_password' id='password' maxlength="250" />
+					<input type='password' name='j_password' id='password' maxlength="250" />
 				</div>
-				<div class="divInternaFormulario">
+				<div class="divPadding">
 					<label for='remember_me'><g:message code="lembrarMe" /></label>
 					<input type='checkbox' name='${rememberMeParameter}' id='remember_me'
 					<g:if test='${hasCookie}'>checked='checked'</g:if> />
 				</div>
-				<div class="divInternaFormulario">
-					<input type='submit' value='${message(code: 'entrar')}' />
+				<div class="divPadding">
+					<input type='submit' value='${message(code: 'entrar')}' class="inputRight" />
 				</div>
+				<div class="clear"></div>
 			</form>
 		</div>
-		<div>
+		<div class="divPadding">
 		  <a href="${request.contextPath}/parceiro/create"><g:message code="cadastroParceiro"  /></a>
 		</div>
 	</div>
