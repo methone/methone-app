@@ -12,7 +12,7 @@
             <h1><g:message code="cadastroParceiro" /></h1>
             <g:formularioParceiro action="save" parceiroInstance="${parceiroInstance}"
               cadastro="true" message="${flash.message}" enctype=""/>
-            <div>
+            <div class="divPadding">
                <a href="${request.contextPath}/login/auth"><g:message code="voltar"/></a>
             </div>
         </div>

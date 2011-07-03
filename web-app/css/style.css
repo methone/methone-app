@@ -7,6 +7,12 @@ body {
 	font: 13px verdana, arial, helvetica, sans-serif;
 }
 
+h1 {
+    font-weight: normal;
+    font-size: 16px;
+    margin: .8em 0 .3em 0;
+}
+
 #header {
 	background-color: #01253F;
 	border-bottom: 3px solid #BFCED7;
@@ -41,6 +47,10 @@ body {
 	top: 0;
 }
 
+#infoUser {
+	float:right;	
+}
+
 #login {
 	margin-left: 240px;
 	margin-top: 40px;
@@ -49,7 +59,7 @@ body {
 }
 
 #innerLogin {
-	border: solid 1px;		
+	border: solid 1px #CCCCCC;		
 	padding: 10px;	
 }
 
@@ -74,8 +84,9 @@ input,select,textarea {
 	padding: 2px 4px;
 }
 
-.inputRight {
+.inputButtonRight {
 	float: right;
+	cursor: pointer;
 }
 
 select {
@@ -110,7 +121,12 @@ label {
 	padding-top: 3px;
 }
 
-/* mensagens de erro */
+.radioLabel {
+	width: auto;	
+	float: right;
+	margin-right: 3px;
+	margin-left: 3px;
+}
 
 .message {
     background: #f3f8fc url(../images/skin/information.png) 8px 50% no-repeat;
@@ -125,7 +141,7 @@ div.errors {
     border: 1px solid red;
     color: #cc0000;
     margin: 10px 0 5px 0;
-    padding: 5px 0 5px 0;
+    padding: 5px;
 }
 
 div.errors ul {
@@ -137,4 +153,38 @@ div.errors li {
 	background: url(../images/skin/exclamation.png) 8px 0% no-repeat;
     line-height: 16px;
     padding-left: 30px;
+}
+
+div .dialog  {
+    padding: 10px;
+    border: 1px solid #CCCCCC;
+}
+
+div.error input {
+    border: 1px solid red;
+}
+
+div .left {
+	float: left;	
+}
+
+input.delete {
+    background: transparent url(../images/skin/database_delete.png) 5px 50% no-repeat;
+    padding-left: 28px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+input.edit {
+    background: transparent url(../images/skin/database_edit.png) 5px 50% no-repeat;
+    padding-left: 28px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+input.save {
+    background: transparent url(../images/skin/database_save.png) 5px 50% no-repeat;
+    padding-left: 28px;
+    cursor: pointer;
+    margin-left: 5px;
 }

@@ -23,7 +23,12 @@
 	        </div>
         </div>
         <sec:ifLoggedIn>
-            <sec:username /> <g:link controller="logout"> <g:message code="sair" /></g:link>
+            <div id="infoUser">
+               <sec:username /> 
+               <g:link controller="logout"> <g:message code="sair" /></g:link>
+            </div>
+            <div class="clear"></div>
+            <br />
         </sec:ifLoggedIn>
         <g:layoutBody />
     </body>

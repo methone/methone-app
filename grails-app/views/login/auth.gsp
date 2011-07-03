@@ -26,7 +26,7 @@
 					<g:if test='${hasCookie}'>checked='checked'</g:if> />
 				</div>
 				<div class="divPadding">
-					<input type='submit' value='${message(code: 'entrar')}' class="inputRight" />
+					<input type='submit' value='${message(code: 'entrar')}' class="inputButtonRight" />
 				</div>
 				<div class="clear"></div>
 			</form>
