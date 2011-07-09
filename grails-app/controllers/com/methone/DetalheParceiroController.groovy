@@ -9,7 +9,7 @@ class DetalheParceiroController {
     def entityValidationService
 
 	def detail = {
-		def parceiroInstance =  parceiroService.getCurrentUser()
+		def parceiroInstance =  parceiroService. getCurrentUser()
 		if(parceiroInstance){
 			return [parceiroInstance:parceiroInstance, diretorioImagem : parceiroService.diretorioImagemRelativo]
 		}

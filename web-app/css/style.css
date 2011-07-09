@@ -81,7 +81,7 @@ input,select,textarea {
 	border: 1px solid #ccc;
 	font: 13px verdana, arial, helvetica, sans-serif;
 	margin: 2px 0;
-	padding: 2px 4px;
+	padding: 2px 4px;	
 }
 
 .inputButtonRight {
@@ -100,7 +100,7 @@ textarea {
 }
 
 input:focus,select:focus,textarea:focus {
-	border: 1px solid #b2d1ff;
+	border: 1px solid #b2d1ff;	
 }
 
 a:link, a:visited {
@@ -126,6 +126,10 @@ label {
 	float: right;
 	margin-right: 3px;
 	margin-left: 3px;
+}
+
+.radioInput {
+	float: left;	
 }
 
 .message {
@@ -171,6 +175,9 @@ div .left {
 input.delete {
     background: transparent url(../images/skin/database_delete.png) 5px 50% no-repeat;
     padding-left: 28px;
+    padding-right:10px;
+    padding-bottom: 3px;
+    padding-top: 3px;
     cursor: pointer;
     margin-left: 5px;
 }
@@ -178,13 +185,20 @@ input.delete {
 input.edit {
     background: transparent url(../images/skin/database_edit.png) 5px 50% no-repeat;
     padding-left: 28px;
+    padding-right:10px;
+    padding-bottom: 3px;
+    padding-top: 3px;
     cursor: pointer;
     margin-left: 5px;
 }
 
 input.save {
     background: transparent url(../images/skin/database_save.png) 5px 50% no-repeat;
-    padding-left: 28px;
+    padding-left: 28px;    
+    padding-right:10px;
+    padding-bottom: 3px;
+    padding-top: 3px;
     cursor: pointer;
     margin-left: 5px;
 }
+

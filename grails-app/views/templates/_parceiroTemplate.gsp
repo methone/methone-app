@@ -54,7 +54,7 @@
                   <label><g:message code="interesse" /></label>
                   <g:each in="${com.methone.enumeration.Interesse.values()}" var="interesseEnum">
                         <div class="left">
-                          <g:radio id="${interesseEnum.name()}" name="interesse" value="${interesseEnum}" checked="${parceiroInstance?.interesse.equals(interesseEnum)}" />
+                          <g:radio class="radioInput" id="${interesseEnum.name()}" name="interesse" value="${interesseEnum}" checked="${parceiroInstance?.interesse.equals(interesseEnum)}" />
                           <label class="radioLabel" for="${interesseEnum.name()}">${message(code: interesseEnum.bundleKey)}</label>                          
                         </div>
                    </g:each>
