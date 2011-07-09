@@ -43,3 +43,9 @@ classes/
 bin/
 target/
 uploads/
+
+# intelliJ folder/files #
+######################
+*.iml
+*.ipr
+*.iws
