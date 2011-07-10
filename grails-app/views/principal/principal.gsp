@@ -18,9 +18,12 @@
                       <a href="${request.contextPath}/detalheParceiro/detail"><g:message code="detalheParceiro"  /></a>
                    </li>
                    <li>
+                      <a href="${request.contextPath}/qualificacaoParceiro/qualificacao"><g:message code="qualificacoes"  /></a>
+                   </li>
+                   <li>
                       <a href="${request.contextPath}/trocaSenha"><g:message code="trocaSenhaEmail"  /></a>
                    </li>
-                </ul>                
+                </ul>
             </div>
         </div>
     </body>
