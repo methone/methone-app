@@ -7,7 +7,7 @@
     </div>
 </g:hasErrors>
 <g:form action="${action}" enctype="${enctype}">
-    <div class="dialog"> 		
+    <div class="dialog">
              <g:if test="${cadastro == 'false'}">
                  <g:hiddenField name="id" value="${parceiroInstance?.id}" />
                  <g:hiddenField name="version" value="${parceiroInstance?.version}" />
@@ -15,16 +15,16 @@
 				 <g:if test="${parceiroInstance?.urlImagem != null}">
 					 <div class="divPadding">
 					   <img src="${resource(dir: diretorioImagem, file: parceiroInstance?.urlImagem)}"  style="width:140px;height:140px" />
-				     </div>                    
+				     </div>
 	             </g:if>
 	             <div class="divPadding">
 	                <label style="width:auto"  for="file"><g:message code="selecioneImagem"  /></label>
 	             </div>
 	             <div class="clear"></div>
-				 <div class="divPadding ${hasErrors(bean: parceiroInstance, field: 'urlImagem', 'error')}">				     
+				 <div class="divPadding ${hasErrors(bean: parceiroInstance, field: 'urlImagem', 'error')}">
 				     <input type="file" name="file" id="file"/>
-				 </div> 
-				 <br /><br />                
+				 </div>
+				 <br /><br />
              </g:if>
              <g:if test="${cadastro == 'true'}">
                  <div class="divPadding ${hasErrors(bean: parceiroInstance, field: 'username', 'error')}">
@@ -54,8 +54,8 @@
                   <label><g:message code="interesse" /></label>
                   <g:each in="${com.methone.enumeration.Interesse.values()}" var="interesseEnum">
                         <div class="left">
-                          <g:radio class="radioInput" id="${interesseEnum.name()}" name="interesse" value="${interesseEnum}" checked="${parceiroInstance?.interesse.equals(interesseEnum)}" />
-                          <label class="radioLabel" for="${interesseEnum.name()}">${message(code: interesseEnum.bundleKey)}</label>                          
+                          <g:radio class="checkInput" id="${interesseEnum.name()}" name="interesse" value="${interesseEnum}" checked="${parceiroInstance?.interesse.equals(interesseEnum)}" />
+                          <label class="checkLabel" for="${interesseEnum.name()}">${message(code: interesseEnum.bundleKey)}</label>
                         </div>
                    </g:each>
               </div>
@@ -77,14 +77,14 @@
                   <g:textField name="estado" value="${parceiroInstance?.estado}" maxlength="250" />
               </div>
               <div class="divPadding ${hasErrors(bean: parceiroInstance, field: 'telefone', 'error')}">
-				 <label for="telefone"><g:message code="telefone"  /></label>              
+				 <label for="telefone"><g:message code="telefone"  /></label>
 				 <g:textField name="telefone" value="${parceiroInstance?.telefone}" />
               </div>
               <div class="divPadding">
                 <g:submitButton name="create" class="save" value="${message(code: 'default.button.save.label', default: 'Create')}" />
-             </div>             
+             </div>
      </div>
-     
+
 </g:form>
 <script type="text/javascript">
             jQuery(function($){

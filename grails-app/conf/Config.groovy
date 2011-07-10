@@ -102,6 +102,7 @@ import grails.plugins.springsecurity.SecurityConfigType
 grails.plugins.springsecurity.securityConfigType = SecurityConfigType.InterceptUrlMap
 grails.plugins.springsecurity.interceptUrlMap = [
 	'/detalheParceiro/**': ['IS_AUTHENTICATED_FULLY'],
+	'/qualificacaoParceiro/**': ['IS_AUTHENTICATED_FULLY'],
 	'/area/**':            ['IS_AUTHENTICATED_FULLY'],
 	'/especialidade/**':   ['IS_AUTHENTICATED_FULLY'],
 	'/principal/**':       ['IS_AUTHENTICATED_FULLY']
