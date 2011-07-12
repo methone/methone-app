@@ -23,7 +23,7 @@ class Parceiro extends User {
 	static hasOne = [ranking:Ranking]
 
 	static hasMany = [projetos:Projeto, propostas:Proposta, pagamentos:Pagamento,
-		atividadesProjeto:AtividadeProjeto
+		atividadesProjeto:AtividadeProjeto, especialidades:Especialidade
 	]
 
 	static constraints = {

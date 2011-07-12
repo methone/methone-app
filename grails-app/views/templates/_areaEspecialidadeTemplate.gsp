@@ -5,7 +5,7 @@
      <div id="divFade_${area.id}" class="inactive" style="width:600px">
 		 <g:each var="especialidade" in="${especialidades}">
 					<div class="divPadding left">
-						<input class="checkInput" type="checkbox" name="especialidade" id="especialidade_${especialidade.id}"
+						<input value="${especialidade.id}" class="checkInput" type="checkbox" name="especialidade" id="especialidade_${especialidade.id}"
 					   		<g:each var="selecionada" in="${especialidadeSelecionadas}">
 		                  		<g:if test="${selecionada.id == especialidade.id}">checked="checked"</g:if>
 					   		</g:each>

@@ -11,10 +11,20 @@
         <div class="body">
             <h1><g:message code="editarQualificacao" /></h1>
             <div class="dialog">
-            	<g:each var="area" in="${areaList}">
-            		<g:areaEspecilidadeCheck area="${area}" />
-            	</g:each>
+	            <g:form action="salvar" >
+	            	<g:hiddenField name="id" value="${parceiroInstance?.id}" />
+                    <g:hiddenField name="version" value="${parceiroInstance?.version}" />
+	            	<div class="divPadding">
+		            	<g:each var="area" in="${areaList}">
+		            		<g:areaEspecilidadeCheck area="${area}" especialidadeSelecionadas="${especialidadeList}" />
+		            	</g:each>
+	            	</div>
+	            	<div class="divPadding">
+		                <g:submitButton name="save" class="save" value="${message(code: 'default.button.save.label')}" />
+		             </div>
+	            </g:form>
             </div>
+
 
              <div class="divPadding">
                <a href="${request.contextPath}/principal/principal.gsp"><g:message code="voltar"/></a>
