@@ -9,39 +9,49 @@ class QualificacaoParceiroController {
 	static allowedMethods = [salvar: "POST"]
 
 	def parceiroService
+	def entityValidationService
 
 	def qualificacao = {
-		def parceiroInstance =  parceiroService. getCurrentUser()
-		def areaList = Area.list()
-		def especialidadeList = parceiroInstance.especialidades
-		return [parceiroInstance:parceiroInstance, areaList:areaList, especialidadeList:especialidadeList]
+		def parceiroInstance = parceiroService.getCurrentUser()
+		return [parceiroInstance: parceiroInstance, areaList:Area.list(), especialidadeList:parceiroInstance.especialidades]
 	}
 
 	def salvar = {
-		// pega as especialidades selecionadas na tela
-		def especialidadesSelecionadas = params.especialidade
-		if(especialidadesSelecionadas != null) {
-			// TODO validar versao e parceiro nulo
-			def parceiro = Parceiro.get(params.id)
-			if(especialidadesSelecionadas.size() > 0){
-				def especialidadeList = new ArrayList<Especialidade>()
-				def especialidade = null
-				for(especialidadeId in especialidadesSelecionadas) {
-					if(especialidadeId != null){
-						especialidade = Especialidade.get(especialidadeId)
-						if(especialidade != null){
-							especialidadeList.add(especialidade)
-						}
-					}
-				}
-				parceiro.especialidades = especialidadeList
+		def parceiro = Parceiro.get(params.id)
+		if(parceiro) {
+			if(entityValidationService.validateVersion(parceiro, params.version)){
+				parceiro.especialidades = getEspecialidadeFromResquest()
+				parceiro.save()
+				flash.message = "${message(code: 'salvoSucesso', args: [message(code: 'parceiro')])}"
 			} else {
-				parceiro.especialidades = null
+			  render(view: "qualificacao", model: [parceiroInstance: parceiro, areaList:Area.list(), especialidadeList:parceiro.especialidades])
+			  return
 			}
-			parceiro.save()
 		} else {
-			// TODO exibir mensagem de erro
+			flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'parceiro')])}"
 		}
 		redirect(action: "qualificacao")
+	}
+
+	/**
+	 *
+	 * @return Retorna as especialidades que vieram do request (selecionadas na tela)
+	 */
+	private getEspecialidadeFromResquest() {
+		def especialidadesSelecionadas = params.especialidade
+		if(especialidadesSelecionadas != null && especialidadesSelecionadas.size() > 0) {
+			def especialidadeList = new ArrayList<Especialidade>()
+			def especialidade = null
+			for(especialidadeId in especialidadesSelecionadas) {
+				if(especialidadeId != null){
+					especialidade = Especialidade.get(especialidadeId)
+					if(especialidade != null){
+						especialidadeList.add(especialidade)
+					}
+				}
+			}
+			return especialidadeList
+		}
+		return null
 	}
 }

@@ -9,6 +9,9 @@ class EntityValidationService {
 
     static transactional = false
 
+
+	//TODO criar metodo que valida se o usuario logado eh o mesmo passado como parametro..
+
 	/**
 	 * Verifica se a versao da entidade eh a atual
 	 *

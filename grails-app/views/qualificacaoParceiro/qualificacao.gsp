@@ -10,6 +10,14 @@
     <body>
         <div class="body">
             <h1><g:message code="editarQualificacao" /></h1>
+            <g:if test="${flash.message}">
+    			<div class="message">${flash.message}</div>
+			</g:if>
+			<g:hasErrors bean="${parceiroInstance}">
+    			<div class="errors">
+        			<g:renderErrors bean="${parceiroInstance}" as="list" />
+    			</div>
+			</g:hasErrors>
             <div class="dialog">
 	            <g:form action="salvar" >
 	            	<g:hiddenField name="id" value="${parceiroInstance?.id}" />
