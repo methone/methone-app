@@ -13,7 +13,7 @@ class DetalheParceiroControllerTests extends ControllerUnitTestCase {
 	protected void setUp() {
         super.setUp()
 		buildMocks()
-		controller.metaClass.message = {args -> println "${args}"}
+		controller.metaClass.message = {args ->  "${args}"}
     }
 
     protected void tearDown() {

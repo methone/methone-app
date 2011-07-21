@@ -12,7 +12,7 @@ class QualificacaoParceiroControllerTests extends ControllerUnitTestCase {
 	protected void setUp() {
         super.setUp()
 		buildMocks()
-		controller.metaClass.message = {args -> println "${args}"}
+		controller.metaClass.message = {args -> "${args.code}"}
     }
 
     protected void tearDown() {
@@ -30,6 +30,14 @@ class QualificacaoParceiroControllerTests extends ControllerUnitTestCase {
 		entityValidationService.demand.validateVersion()  { entity,versionInUse->
 			return true
 		}
+	}
+
+	private createPersistedEntity(){
+		Parceiro p = new Parceiro(username : "username", email : "teste@teste.com", password: "senha",
+			nome:"nome", telefone: "telefone", endereco : "endereco",
+			cep : "cep", estado: "estado", cidade : "cidade", interesse: Interesse.AMBOS, version : 1)
+		p.save()
+		return p;
 	}
 
     void testQualificacao() {
@@ -57,4 +65,14 @@ class QualificacaoParceiroControllerTests extends ControllerUnitTestCase {
 		assertTrue map.areaList.contains(area)
 		assertTrue map.especialidadeList.contains(especialidadeList.get(0))
     }
+
+	void testSalvarParceiroNulo(){
+		controller.params.id = 1000
+		controller.salvar()
+		assertNotNull redirectArgs.action
+		assertEquals "qualificacao",redirectArgs.action
+		assertNotNull redirectArgs.action
+		assertNotNull controller.flash.message
+		assertEquals "default.not.found.message", controller.flash.message
+	}
 }
