@@ -48,6 +48,7 @@ class QualificacaoParceiroController {
 					if(especialidade != null){
 						especialidadeList.add(especialidade)
 					}
+
 				}
 			}
 			return especialidadeList
